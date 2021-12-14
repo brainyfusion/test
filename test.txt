@@ -1,0 +1,40 @@
+<div class="wrapper" style="display: inherit;" *ngIf="!loggedIn">
+  <div class="content">
+    <div class="login-wrapper">
+      <div class="login_formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="login-bg">	
+          <div class="logo-box">
+          <img src="assets/img/ITTF.jpg" class="login-logo"><img src="assets/img/wtt_logo.png" class="login-logo">
+        </div>
+          <h1 class="logo-text">OVR Manager</h1>
+        </div>
+        <div class="login-box">
+          <div class="alert alert-danger" *ngIf="error && !loginForm.dirty">The Username or Password you have entered is invalid.<br>
+            Please try again</div>
+          <form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="login-form-group form-group mt-4 mb-4">
+              <label for="txtUserName">Username</label>
+              <input type="text" formControlName="username" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.username.errors }" id="txtUserName" />
+            </div>
+            <div class="login-form-group form-group mt-4 mb-4 login-password">
+              <label for="txtPassword">Password</label>
+              <input type="{{ isPasswordShow ? 'text' : 'password' }}" formControlName="password" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" id="txtPassword">
+              <button class="btn btn-default btn-sm toggle-password " type="button"
+                (click)="isPasswordShow = !isPasswordShow">
+                <i class="{{isPasswordShow?'fa fa-eye-slash':'fa fa-eye'}}" aria-hidden="true"></i>
+              </button>
+            </div>
+            <button [disabled]="loading" class="btn btn-secondary btn-sm px-5 mt-4">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
